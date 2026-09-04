@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       B All-in-One AI Providers
- * Plugin URI:        https://bplugins.com
+ * Plugin URI:        https://github.com/ah-polash/b-all-in-one-ai-providers
  * Description:       Connect 11 popular AI providers (OpenRouter, Mistral, Cohere, Groq, xAI, DeepSeek, Perplexity, Together, Fireworks, Hugging Face, Replicate) or any OpenAI-compatible endpoint to the WordPress AI Client, test API keys with one click, and choose which provider is used first.
  * Version:           1.0.0
  * Requires at least: 7.0
