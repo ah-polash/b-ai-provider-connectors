@@ -1,0 +1,23 @@
+<?php
+/**
+ * Cohere Text Generation Model.
+ *
+ * @package BAllInOneAIProviders
+ */
+
+declare(strict_types=1);
+
+namespace BPlugins\AllInOneAIProviders\Models;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+use BPlugins\AllInOneAIProviders\Base\BaseTextGenerationModel;
+use BPlugins\AllInOneAIProviders\Provider\CohereProvider;
+
+class CohereTextGenerationModel extends BaseTextGenerationModel {
+	protected static function providerClass(): string {
+		return CohereProvider::class;
+	}
+}

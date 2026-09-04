@@ -1,0 +1,99 @@
+/**
+ * B All-in-One AI Providers — styles for the injected "Test Connection Again" button
+ * and its floating tooltip-style result message.
+ */
+
+.baioap__wrapper {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-inline-start: 8px;
+}
+
+.baioap__button.components-button.is-tertiary.is-compact {
+	height: auto;
+	padding: 4px 10px;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.baioap__button.is-busy {
+	opacity: 0.7;
+	cursor: progress;
+}
+
+.connector-settings .baioap__button {
+	margin-inline-start: 8px;
+}
+
+/*
+ * Tooltip-style floating result message. Lives in document.body so no parent
+ * can clip it; positioned with viewport coordinates by JS.
+ */
+.baioap__tooltip {
+	position: fixed;
+	left: 0;
+	top: 0;
+	max-width: 260px;
+	min-width: max-content;
+	padding: 6px 10px;
+	border-radius: 4px;
+	font-size: 12px;
+	line-height: 1.4;
+	color: #fff;
+	background: #1e1e1e;
+	box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.18 );
+	white-space: normal;
+	text-align: center;
+	pointer-events: none;
+	z-index: 100000;
+}
+
+.baioap__tooltip[hidden] {
+	display: none;
+}
+
+/* Arrow points down when tooltip is above the button (default). */
+.baioap__tooltip::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX( -50% );
+	border: 5px solid transparent;
+	border-top-color: #1e1e1e;
+}
+
+/* Arrow points up when tooltip is flipped below the button. */
+.baioap__tooltip.is-below::after {
+	top: auto;
+	bottom: 100%;
+	border-top-color: transparent;
+	border-bottom-color: #1e1e1e;
+}
+
+.baioap__tooltip.is-success {
+	background: #1a7a37;
+}
+
+.baioap__tooltip.is-success::after {
+	border-top-color: #1a7a37;
+}
+
+.baioap__tooltip.is-success.is-below::after {
+	border-top-color: transparent;
+	border-bottom-color: #1a7a37;
+}
+
+.baioap__tooltip.is-error {
+	background: #b32d2e;
+}
+
+.baioap__tooltip.is-error::after {
+	border-top-color: #b32d2e;
+}
+
+.baioap__tooltip.is-error.is-below::after {
+	border-top-color: transparent;
+	border-bottom-color: #b32d2e;
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!--
+    B All-in-One AI Providers — plugin icon, variant "aiswitch".
+    AI switch: the sparkle above provider rows with toggles.
+    bPlugins brand: #146EF5 blue, #FF7A00 orange, #070127 navy.
+    Square corners throughout; no card frame — elements sit on the brand tile.
+    Rest state (0% / 100%) is identical to the static PNG derivatives.
+  -->
+  <defs>
+    <style>
+      svg { --dur: 4.4s; }
+      .spark { transform-box: fill-box; transform-origin: 50% 50%; animation: breathe var(--dur) ease-in-out infinite; }
+      .spark-sm { animation-delay: calc(var(--dur) * -0.5); }
+      .knob { animation: slide var(--dur) ease-in-out infinite; }
+      .track { animation: tint var(--dur) ease-in-out infinite; }
+      @keyframes breathe { 0%, 100% { transform: scale(1); } 30% { transform: scale(1.08); } 60% { transform: scale(0.96); } }
+      @keyframes slide { 0%, 55%, 100% { transform: translateX(0); } 65%, 90% { transform: translateX(-20px); } }
+      @keyframes tint  { 0%, 55%, 100% { fill: #FF7A00; } 65%, 90% { fill: #9fb8e8; } }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+    </style>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#146EF5"/>
+      <stop offset="1" stop-color="#0B3FA8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="256" height="256" fill="url(#bg)"/>
+
+      <!-- AI sparkles -->
+      <path class="spark" d="M112 28 L124.3 71.7 L168 84 L124.3 96.3 L112 140 L99.7 96.3 L56 84 L99.7 71.7 Z" fill="#ffffff"/>
+      <path class="spark spark-sm" d="M184 26 L188.8 43.2 L206 48 L188.8 52.8 L184 70 L179.2 52.8 L162 48 L179.2 43.2 Z" fill="#FF7A00"/>
+      <!-- provider rows -->
+      <rect x="32" y="150" width="192" height="40" fill="#ffffff"/>
+      <rect x="42" y="159" width="22" height="22" fill="#146EF5"/>
+      <rect x="76" y="165" width="60" height="10" fill="#0B3FA8" fill-opacity="0.35"/>
+      <rect class="track" x="172" y="158" width="44" height="24" fill="#FF7A00"/>
+      <rect class="knob" x="196" y="162" width="16" height="16" fill="#ffffff"/>
+      <rect x="32" y="200" width="192" height="40" fill="#ffffff"/>
+      <rect x="42" y="209" width="22" height="22" fill="#070127"/>
+      <rect x="76" y="215" width="60" height="10" fill="#0B3FA8" fill-opacity="0.35"/>
+      <rect x="172" y="208" width="44" height="24" fill="#9fb8e8"/>
+      <rect x="176" y="212" width="16" height="16" fill="#ffffff"/>
+</svg>

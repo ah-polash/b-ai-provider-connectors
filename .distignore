@@ -1,0 +1,13 @@
+# Excluded from the distributed zip / wp.org trunk
+/.git
+/.github
+/.distignore
+/.gitignore
+/wp.org
+/node_modules
+/tests
+/.DS_Store
+*.md
+*.log
+composer.lock
+package-lock.json
