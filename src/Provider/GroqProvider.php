@@ -22,7 +22,7 @@ class GroqProvider extends BaseProvider {
 		return array(
 			'id'             => 'groq',
 			'name'           => 'Groq',
-			'baseUrl'        => 'https://api.groq.com/openai/v1',
+			'baseUrl'        => 'https://api.groq.com/openai/v1', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://console.groq.com/keys',
 			'description'    => function_exists( '__' )
 				? __( 'Fast inference on open-source models.', 'b-all-in-one-ai-providers' )

@@ -22,7 +22,7 @@ class PerplexityProvider extends BaseProvider {
 		return array(
 			'id'             => 'perplexity',
 			'name'           => 'Perplexity',
-			'baseUrl'        => 'https://api.perplexity.ai',
+			'baseUrl'        => 'https://api.perplexity.ai', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://www.perplexity.ai/settings/api',
 			'description'    => function_exists( '__' )
 				? __( 'Online answer-engine models.', 'b-all-in-one-ai-providers' )

@@ -22,7 +22,7 @@ class XAIProvider extends BaseProvider {
 		return array(
 			'id'             => 'xai',
 			'name'           => 'xAI',
-			'baseUrl'        => 'https://api.x.ai/v1',
+			'baseUrl'        => 'https://api.x.ai/v1', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://console.x.ai/',
 			'description'    => function_exists( '__' )
 				? __( 'Grok models from xAI.', 'b-all-in-one-ai-providers' )

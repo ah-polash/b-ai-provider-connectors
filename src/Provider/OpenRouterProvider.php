@@ -27,9 +27,9 @@ class OpenRouterProvider extends BaseProvider {
 		return array(
 			'id'              => 'openrouter',
 			'name'            => 'OpenRouter',
-			'baseUrl'         => 'https://openrouter.ai/api/v1',
-			'credentialsUrl'  => 'https://openrouter.ai/keys',
-			'availabilityUrl' => 'https://openrouter.ai/api/v1/auth/key',
+			'baseUrl'         => 'https://openrouter.ai/api/v1', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
+			'credentialsUrl'  => 'https://openrouter.ai/keys', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
+			'availabilityUrl' => 'https://openrouter.ai/api/v1/auth/key', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'description'     => function_exists( '__' )
 				? __( 'Unified inference for hundreds of AI models.', 'b-all-in-one-ai-providers' )
 				: 'Unified inference for hundreds of AI models.',

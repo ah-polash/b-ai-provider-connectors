@@ -23,7 +23,7 @@ class DeepSeekProvider extends BaseProvider {
 			'id'             => 'deepseek',
 			'name'           => 'DeepSeek',
 			// DeepSeek mounts /chat/completions and /models at the root, not under /v1.
-			'baseUrl'        => 'https://api.deepseek.com',
+			'baseUrl'        => 'https://api.deepseek.com', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://platform.deepseek.com/api_keys',
 			'description'    => function_exists( '__' )
 				? __( 'Reasoning and code models from DeepSeek.', 'b-all-in-one-ai-providers' )

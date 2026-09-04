@@ -22,7 +22,7 @@ class MistralProvider extends BaseProvider {
 		return array(
 			'id'             => 'mistral',
 			'name'           => 'Mistral AI',
-			'baseUrl'        => 'https://api.mistral.ai/v1',
+			'baseUrl'        => 'https://api.mistral.ai/v1', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://console.mistral.ai/api-keys/',
 			'description'    => function_exists( '__' )
 				? __( 'Frontier and open-weight models from Mistral.', 'b-all-in-one-ai-providers' )

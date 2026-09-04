@@ -22,7 +22,7 @@ class CohereProvider extends BaseProvider {
 		return array(
 			'id'             => 'cohere',
 			'name'           => 'Cohere',
-			'baseUrl'        => 'https://api.cohere.ai/compatibility/v1',
+			'baseUrl'        => 'https://api.cohere.ai/compatibility/v1', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://dashboard.cohere.com/api-keys',
 			'description'    => function_exists( '__' )
 				? __( 'Enterprise AI for retrieval and generation.', 'b-all-in-one-ai-providers' )
