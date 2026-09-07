@@ -2,7 +2,7 @@
 /**
  * Model metadata directory for custom provider slot 3.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

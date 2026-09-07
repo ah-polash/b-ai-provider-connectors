@@ -4,7 +4,7 @@
  *
  * Maps the namespace prefix `BPlugins\AllInOneAIProviders\` to the `src/` directory.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

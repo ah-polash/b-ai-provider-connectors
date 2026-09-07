@@ -2,7 +2,7 @@
 /**
  * Together Provider.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -25,7 +25,7 @@ class TogetherProvider extends BaseProvider {
 			'baseUrl'        => 'https://api.together.xyz/v1',
 			'credentialsUrl' => 'https://api.together.xyz/settings/api-keys',
 			'description'    => function_exists( '__' )
-				? __( 'Hosted inference for open-source AI.', 'b-all-in-one-ai-providers' )
+				? __( 'Hosted inference for open-source AI.', 'bplugins-ai-provider-connectors' )
 				: 'Hosted inference for open-source AI.',
 			'logoFile'       => 'together.svg',
 			'directoryClass' => TogetherModelMetadataDirectory::class,

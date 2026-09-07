@@ -7,7 +7,7 @@
  * hands the stored API keys to the registry — exactly like the official
  * "AI Provider for Anthropic / OpenAI" plugins. This plugin never registers connectors itself.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

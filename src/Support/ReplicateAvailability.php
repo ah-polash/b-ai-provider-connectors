@@ -2,7 +2,7 @@
 /**
  * Replicate Availability.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

@@ -2,7 +2,7 @@
 /**
  * Replicate Chat Models.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

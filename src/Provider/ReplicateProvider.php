@@ -2,7 +2,7 @@
 /**
  * Replicate Provider.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -28,7 +28,7 @@ class ReplicateProvider extends BaseProvider {
 			'baseUrl'        => 'https://api.replicate.com/v1',
 			'credentialsUrl' => 'https://replicate.com/account/api-tokens',
 			'description'    => function_exists( '__' )
-				? __( 'Run open-source models in the cloud.', 'b-all-in-one-ai-providers' )
+				? __( 'Run open-source models in the cloud.', 'bplugins-ai-provider-connectors' )
 				: 'Run open-source models in the cloud.',
 			'logoFile'       => 'replicate.svg',
 			'directoryClass' => ReplicateModelMetadataDirectory::class,

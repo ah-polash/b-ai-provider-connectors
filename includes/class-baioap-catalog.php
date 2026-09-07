@@ -2,7 +2,7 @@
 /**
  * Provider catalog: bundled providers, enable/disable state, custom providers, and API key helpers.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -240,7 +240,7 @@ class BAIOAP_Catalog {
 
 		$name = isset( $input['name'] ) ? sanitize_text_field( (string) $input['name'] ) : '';
 		if ( '' === $name || mb_strlen( $name ) > 60 ) {
-			return new WP_Error( 'baioap_invalid_name', __( 'Please enter a name of up to 60 characters.', 'b-all-in-one-ai-providers' ), array( 'status' => 400, 'field' => 'name' ) );
+			return new WP_Error( 'baioap_invalid_name', __( 'Please enter a name of up to 60 characters.', 'bplugins-ai-provider-connectors' ), array( 'status' => 400, 'field' => 'name' ) );
 		}
 
 		// The ID is immutable once created because API keys are stored under it.
@@ -249,20 +249,20 @@ class BAIOAP_Catalog {
 		} else {
 			$id = isset( $input['id'] ) ? sanitize_key( (string) $input['id'] ) : '';
 			if ( ! preg_match( '/^[a-z0-9][a-z0-9_-]{1,39}$/', $id ) ) {
-				return new WP_Error( 'baioap_invalid_id', __( 'The ID must be 2–40 characters: lowercase letters, numbers, hyphens or underscores.', 'b-all-in-one-ai-providers' ), array( 'status' => 400, 'field' => 'id' ) );
+				return new WP_Error( 'baioap_invalid_id', __( 'The ID must be 2–40 characters: lowercase letters, numbers, hyphens or underscores.', 'bplugins-ai-provider-connectors' ), array( 'status' => 400, 'field' => 'id' ) );
 			}
 			$taken = self::reserved_ids();
 			foreach ( self::custom() as $data ) {
 				$taken[] = $data['id'];
 			}
 			if ( in_array( $id, $taken, true ) ) {
-				return new WP_Error( 'baioap_duplicate_id', __( 'That ID is already used by another provider.', 'b-all-in-one-ai-providers' ), array( 'status' => 400, 'field' => 'id' ) );
+				return new WP_Error( 'baioap_duplicate_id', __( 'That ID is already used by another provider.', 'bplugins-ai-provider-connectors' ), array( 'status' => 400, 'field' => 'id' ) );
 			}
 		}
 
 		$base_url = isset( $input['base_url'] ) ? esc_url_raw( trim( (string) $input['base_url'] ), array( 'http', 'https' ) ) : '';
 		if ( '' === $base_url || ! wp_http_validate_url( $base_url ) && 0 !== strpos( $base_url, 'http://localhost' ) && 0 !== strpos( $base_url, 'http://127.0.0.1' ) ) {
-			return new WP_Error( 'baioap_invalid_url', __( 'Please enter a valid base URL, for example https://api.example.com/v1.', 'b-all-in-one-ai-providers' ), array( 'status' => 400, 'field' => 'base_url' ) );
+			return new WP_Error( 'baioap_invalid_url', __( 'Please enter a valid base URL, for example https://api.example.com/v1.', 'bplugins-ai-provider-connectors' ), array( 'status' => 400, 'field' => 'base_url' ) );
 		}
 
 		$credentials_url = isset( $input['credentials_url'] ) ? esc_url_raw( trim( (string) $input['credentials_url'] ), array( 'http', 'https' ) ) : '';
@@ -301,7 +301,7 @@ class BAIOAP_Catalog {
 					'baioap_slots_full',
 					sprintf(
 						/* translators: %d: maximum number of custom providers. */
-						__( 'You can add up to %d custom providers. Remove one to add another.', 'b-all-in-one-ai-providers' ),
+						__( 'You can add up to %d custom providers. Remove one to add another.', 'bplugins-ai-provider-connectors' ),
 						self::CUSTOM_SLOTS
 					),
 					array( 'status' => 400 )

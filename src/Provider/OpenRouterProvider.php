@@ -2,7 +2,7 @@
 /**
  * Open Router Provider.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -31,7 +31,7 @@ class OpenRouterProvider extends BaseProvider {
 			'credentialsUrl'  => 'https://openrouter.ai/keys', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'availabilityUrl' => 'https://openrouter.ai/api/v1/auth/key', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'description'     => function_exists( '__' )
-				? __( 'Unified inference for hundreds of AI models.', 'b-all-in-one-ai-providers' )
+				? __( 'Unified inference for hundreds of AI models.', 'bplugins-ai-provider-connectors' )
 				: 'Unified inference for hundreds of AI models.',
 			'logoFile'        => 'openrouter.svg',
 			'directoryClass'  => OpenRouterModelMetadataDirectory::class,

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generates the wordpress.org artwork for B All-in-One AI Providers.
+Generates the wordpress.org artwork for bPlugins AI Provider Connectors.
 
 Follows the bPlugins house style used by b-media-fields-for-cf7:
   - brand tile: #146EF5 -> #0B3FA8 gradient, square corners, no frame
@@ -77,7 +77,7 @@ ICONS = [
 def icon_svg(slug, comment, style, body):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
   <!--
-    B All-in-One AI Providers — plugin icon, variant "{slug}".
+    bPlugins AI Provider Connectors — plugin icon, variant "{slug}".
     {comment}
     bPlugins brand: {BLUE} blue, {ORANGE} orange, {NAVY} navy.
     Square corners throughout; no card frame — elements sit on the brand tile.
@@ -101,7 +101,7 @@ def icon_svg(slug, comment, style, body):
 # Banners. (slug, pill, hero line 1, hero line 2, subline, hero size)
 # --------------------------------------------------------------------------
 BANNERS = [
-    ('aiswitch', 'ALL-IN-ONE AI PROVIDERS', 'Connect any AI', 'to WordPress.', 'Enable, test and prioritise 11 providers from one settings screen'),
+    ('aiswitch', 'BPLUGINS AI PROVIDER CONNECTORS', 'Connect any AI', 'to WordPress.', 'Enable, test and prioritise 11 providers from one settings screen'),
 ]
 
 def banner_svg(slug, pill, hero1, hero2, sub, body):
@@ -109,7 +109,7 @@ def banner_svg(slug, pill, hero1, hero2, sub, body):
     pill_cx = 560 + pill_w / 2
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1544" height="500" viewBox="0 0 1544 500">
   <!--
-    B All-in-One AI Providers — wordpress.org banner (1544x500), variant "{slug}".
+    bPlugins AI Provider Connectors — wordpress.org banner (1544x500), variant "{slug}".
     bPlugins brand: Space Grotesk, {BLUE} blue, {ORANGE} orange, {NAVY} navy.
   -->
   <defs>

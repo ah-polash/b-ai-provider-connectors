@@ -2,7 +2,7 @@
 /**
  * REST API: connection tests, enable/disable, custom providers, and priority.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -162,7 +162,7 @@ class BAIOAP_REST {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You are not allowed to manage AI providers.', 'b-all-in-one-ai-providers' ),
+				__( 'You are not allowed to manage AI providers.', 'bplugins-ai-provider-connectors' ),
 				array( 'status' => rest_authorization_required_code() )
 			);
 		}
@@ -185,7 +185,7 @@ class BAIOAP_REST {
 		if ( ! function_exists( 'wp_get_connector' ) || ! function_exists( '_wp_connectors_is_ai_api_key_valid' ) ) {
 			return new WP_Error(
 				'baioap_unavailable',
-				__( 'The Connectors API is not available on this site.', 'b-all-in-one-ai-providers' ),
+				__( 'The Connectors API is not available on this site.', 'bplugins-ai-provider-connectors' ),
 				array( 'status' => 501 )
 			);
 		}
@@ -194,21 +194,21 @@ class BAIOAP_REST {
 		$connector = wp_get_connector( $id );
 
 		if ( null === $connector && ! $is_ours ) {
-			return new WP_Error( 'baioap_unknown_connector', __( 'Unknown connector.', 'b-all-in-one-ai-providers' ), array( 'status' => 404 ) );
+			return new WP_Error( 'baioap_unknown_connector', __( 'Unknown connector.', 'bplugins-ai-provider-connectors' ), array( 'status' => 404 ) );
 		}
 
 		if ( null !== $connector ) {
 			$auth = isset( $connector['authentication'] ) && is_array( $connector['authentication'] ) ? $connector['authentication'] : array();
 			if ( empty( $auth['method'] ) || 'api_key' !== $auth['method'] ) {
-				return rest_ensure_response( $this->result( false, 'unsupported', __( 'This connector does not use API key authentication.', 'b-all-in-one-ai-providers' ) ) );
+				return rest_ensure_response( $this->result( false, 'unsupported', __( 'This connector does not use API key authentication.', 'bplugins-ai-provider-connectors' ) ) );
 			}
 			if ( ! $is_ours && ( ! isset( $connector['type'] ) || 'ai_provider' !== $connector['type'] ) ) {
 				// Other connectors: we can confirm a key is present, but cannot reach the provider from here.
 				$present = '' !== $this->resolve_api_key( $auth );
 				return rest_ensure_response(
 					$present
-						? $this->result( true, 'key_present', __( 'An API key is configured. Live validation is not available for this connector.', 'b-all-in-one-ai-providers' ) )
-						: $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'b-all-in-one-ai-providers' ) )
+						? $this->result( true, 'key_present', __( 'An API key is configured. Live validation is not available for this connector.', 'bplugins-ai-provider-connectors' ) )
+						: $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'bplugins-ai-provider-connectors' ) )
 				);
 			}
 			$api_key = $this->resolve_api_key( $auth );
@@ -217,7 +217,7 @@ class BAIOAP_REST {
 		}
 
 		if ( '' === $api_key ) {
-			return rest_ensure_response( $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'b-all-in-one-ai-providers' ) ) );
+			return rest_ensure_response( $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'bplugins-ai-provider-connectors' ) ) );
 		}
 
 		// A provider that is switched off is not in the registry for this request — register it just for the test.
@@ -228,12 +228,12 @@ class BAIOAP_REST {
 		$is_valid = _wp_connectors_is_ai_api_key_valid( $api_key, $id );
 
 		if ( true === $is_valid ) {
-			return rest_ensure_response( $this->result( true, 'valid', __( 'Connection successful. The API key is valid.', 'b-all-in-one-ai-providers' ) ) );
+			return rest_ensure_response( $this->result( true, 'valid', __( 'Connection successful. The API key is valid.', 'bplugins-ai-provider-connectors' ) ) );
 		}
 		if ( false === $is_valid ) {
-			return rest_ensure_response( $this->result( false, 'invalid', __( 'Connection failed. The API key is not valid.', 'b-all-in-one-ai-providers' ) ) );
+			return rest_ensure_response( $this->result( false, 'invalid', __( 'Connection failed. The API key is not valid.', 'bplugins-ai-provider-connectors' ) ) );
 		}
-		return rest_ensure_response( $this->result( false, 'unknown', __( 'Unable to verify the connection. Please try again later.', 'b-all-in-one-ai-providers' ) ) );
+		return rest_ensure_response( $this->result( false, 'unknown', __( 'Unable to verify the connection. Please try again later.', 'bplugins-ai-provider-connectors' ) ) );
 	}
 
 	/**
@@ -293,7 +293,7 @@ class BAIOAP_REST {
 	public function handle_toggle( WP_REST_Request $request ) {
 		$id = (string) $request['id'];
 		if ( ! BAIOAP_Catalog::is_ours( $id ) ) {
-			return new WP_Error( 'baioap_unknown_provider', __( 'Unknown provider.', 'b-all-in-one-ai-providers' ), array( 'status' => 404 ) );
+			return new WP_Error( 'baioap_unknown_provider', __( 'Unknown provider.', 'bplugins-ai-provider-connectors' ), array( 'status' => 404 ) );
 		}
 		$enabled = (bool) $request['enabled'];
 		BAIOAP_Catalog::set_enabled( $id, $enabled );
@@ -342,7 +342,7 @@ class BAIOAP_REST {
 		if ( null !== $slot ) {
 			$custom = BAIOAP_Catalog::custom();
 			if ( ! isset( $custom[ $slot ] ) ) {
-				return new WP_Error( 'baioap_unknown_slot', __( 'That custom provider no longer exists.', 'b-all-in-one-ai-providers' ), array( 'status' => 404 ) );
+				return new WP_Error( 'baioap_unknown_slot', __( 'That custom provider no longer exists.', 'bplugins-ai-provider-connectors' ), array( 'status' => 404 ) );
 			}
 		}
 
@@ -373,7 +373,7 @@ class BAIOAP_REST {
 	public function handle_custom_delete( WP_REST_Request $request ) {
 		$slot = (int) $request['slot'];
 		if ( ! BAIOAP_Catalog::delete_custom( $slot ) ) {
-			return new WP_Error( 'baioap_unknown_slot', __( 'That custom provider no longer exists.', 'b-all-in-one-ai-providers' ), array( 'status' => 404 ) );
+			return new WP_Error( 'baioap_unknown_slot', __( 'That custom provider no longer exists.', 'bplugins-ai-provider-connectors' ), array( 'status' => 404 ) );
 		}
 		return rest_ensure_response( array( 'deleted' => true ) );
 	}

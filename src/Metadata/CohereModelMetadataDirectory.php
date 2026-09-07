@@ -2,7 +2,7 @@
 /**
  * Cohere Model Metadata Directory.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

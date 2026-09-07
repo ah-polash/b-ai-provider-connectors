@@ -1,8 +1,8 @@
 <?php
 /**
- * Asset loading for the B All-in-One AI Providers plugin.
+ * Asset loading for the bPlugins AI Provider Connectors plugin.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -73,7 +73,7 @@ class BAIOAP_Assets {
 			true
 		);
 
-		wp_set_script_translations( self::SCRIPT_HANDLE, 'b-all-in-one-ai-providers' );
+		wp_set_script_translations( self::SCRIPT_HANDLE, 'bplugins-ai-provider-connectors' );
 
 		wp_localize_script(
 			self::SCRIPT_HANDLE,

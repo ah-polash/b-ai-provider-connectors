@@ -2,7 +2,7 @@
 /**
  * Admin screen: Settings → AI Providers.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -57,8 +57,8 @@ class BAIOAP_Admin {
 	 */
 	public function register_menu() {
 		add_options_page(
-			__( 'AI Providers', 'b-all-in-one-ai-providers' ),
-			__( 'AI Providers', 'b-all-in-one-ai-providers' ),
+			__( 'AI Providers', 'bplugins-ai-provider-connectors' ),
+			__( 'AI Providers', 'bplugins-ai-provider-connectors' ),
 			'manage_options',
 			self::MENU_SLUG,
 			array( $this, 'render_page' )
@@ -72,7 +72,7 @@ class BAIOAP_Admin {
 	 * @return array
 	 */
 	public function action_links( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( $this->page_url() ) . '">' . esc_html__( 'Settings', 'b-all-in-one-ai-providers' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( $this->page_url() ) . '">' . esc_html__( 'Settings', 'bplugins-ai-provider-connectors' ) . '</a>' );
 		return $links;
 	}
 
@@ -109,7 +109,7 @@ class BAIOAP_Admin {
 
 		wp_enqueue_style( self::SCRIPT_HANDLE, BAIOAP_URL . 'assets/admin.css', array(), BAIOAP_VERSION );
 		wp_enqueue_script( self::SCRIPT_HANDLE, BAIOAP_URL . 'assets/admin.js', array( 'wp-api-fetch', 'wp-i18n' ), BAIOAP_VERSION, true );
-		wp_set_script_translations( self::SCRIPT_HANDLE, 'b-all-in-one-ai-providers' );
+		wp_set_script_translations( self::SCRIPT_HANDLE, 'bplugins-ai-provider-connectors' );
 
 		wp_localize_script(
 			self::SCRIPT_HANDLE,
@@ -123,8 +123,8 @@ class BAIOAP_Admin {
 				'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
 				'videosNonce'   => wp_create_nonce( 'baioap_toggle_videos' ),
 				'i18n'          => array(
-					'hide' => __( 'Hide videos', 'b-all-in-one-ai-providers' ),
-					'show' => __( 'Show videos', 'b-all-in-one-ai-providers' ),
+					'hide' => __( 'Hide videos', 'bplugins-ai-provider-connectors' ),
+					'show' => __( 'Show videos', 'bplugins-ai-provider-connectors' ),
 				),
 			)
 		);
@@ -335,37 +335,37 @@ class BAIOAP_Admin {
 		$keyed_count   = count( array_filter( array_merge( $managed, $builtin ), static function ( $r ) { return 'none' !== $r['keySource']; } ) );
 
 		$tabs = array(
-			'providers' => array( __( 'Providers', 'b-all-in-one-ai-providers' ), 'dashicons-cloud' ),
-			'custom'    => array( __( 'Custom providers', 'b-all-in-one-ai-providers' ), 'dashicons-admin-links' ),
-			'priority'  => array( __( 'Priority', 'b-all-in-one-ai-providers' ), 'dashicons-sort' ),
+			'providers' => array( __( 'Providers', 'bplugins-ai-provider-connectors' ), 'dashicons-cloud' ),
+			'custom'    => array( __( 'Custom providers', 'bplugins-ai-provider-connectors' ), 'dashicons-admin-links' ),
+			'priority'  => array( __( 'Priority', 'bplugins-ai-provider-connectors' ), 'dashicons-sort' ),
 		);
 		?>
 		<div class="wrap baioap">
-			<h1 class="screen-reader-text"><?php esc_html_e( 'AI Providers', 'b-all-in-one-ai-providers' ); ?></h1>
+			<h1 class="screen-reader-text"><?php esc_html_e( 'AI Providers', 'bplugins-ai-provider-connectors' ); ?></h1>
 
 			<header class="baioap-header">
 				<div class="baioap-header__brand">
 					<img class="baioap-logo" src="<?php echo esc_url( BAIOAP_URL . 'assets/icon.svg' ); ?>" width="44" height="44" alt="" aria-hidden="true" />
 					<div>
-						<div class="baioap-header__title"><?php esc_html_e( 'All-in-One AI Providers', 'b-all-in-one-ai-providers' ); ?> <span class="baioap-pill baioap-pill--muted">v<?php echo esc_html( BAIOAP_VERSION ); ?></span></div>
-						<div class="baioap-header__sub"><?php esc_html_e( 'Switch on the providers you want, connect each one with an API key, and decide which provider WordPress tries first.', 'b-all-in-one-ai-providers' ); ?></div>
+						<div class="baioap-header__title"><?php esc_html_e( 'AI Provider Connectors', 'bplugins-ai-provider-connectors' ); ?> <span class="baioap-pill baioap-pill--muted">v<?php echo esc_html( BAIOAP_VERSION ); ?></span></div>
+						<div class="baioap-header__sub"><?php esc_html_e( 'Switch on the providers you want, connect each one with an API key, and decide which provider WordPress tries first.', 'bplugins-ai-provider-connectors' ); ?></div>
 					</div>
 				</div>
 				<div class="baioap-header__actions">
-					<a class="baioap-btn baioap-btn--ghost" href="<?php echo esc_url( $this->connectors_url() ); ?>"><span class="dashicons dashicons-admin-network"></span> <?php esc_html_e( 'Manage API keys', 'b-all-in-one-ai-providers' ); ?></a>
-					<a class="baioap-btn baioap-btn--ghost" href="https://wordpress.org/support/plugin/b-all-in-one-ai-providers/" target="_blank" rel="noopener"><span class="dashicons dashicons-sos"></span> <?php esc_html_e( 'Support', 'b-all-in-one-ai-providers' ); ?></a>
+					<a class="baioap-btn baioap-btn--ghost" href="<?php echo esc_url( $this->connectors_url() ); ?>"><span class="dashicons dashicons-admin-network"></span> <?php esc_html_e( 'Manage API keys', 'bplugins-ai-provider-connectors' ); ?></a>
+					<a class="baioap-btn baioap-btn--ghost" href="https://wordpress.org/support/plugin/bplugins-ai-provider-connectors/" target="_blank" rel="noopener"><span class="dashicons dashicons-sos"></span> <?php esc_html_e( 'Support', 'bplugins-ai-provider-connectors' ); ?></a>
 				</div>
 			</header>
 
 			<div id="baioap-notices"></div>
 
 			<div class="baioap-layout">
-				<nav class="baioap-nav baioap-tabs" aria-label="<?php esc_attr_e( 'AI Providers sections', 'b-all-in-one-ai-providers' ); ?>">
+				<nav class="baioap-nav baioap-tabs" aria-label="<?php esc_attr_e( 'AI Providers sections', 'bplugins-ai-provider-connectors' ); ?>">
 					<div class="baioap-nav__brand">
 						<img class="baioap-logo baioap-logo--sm" src="<?php echo esc_url( BAIOAP_URL . 'assets/icon.svg' ); ?>" width="28" height="28" alt="" aria-hidden="true" />
-						<span><?php esc_html_e( 'AI Providers', 'b-all-in-one-ai-providers' ); ?></span>
+						<span><?php esc_html_e( 'AI Providers', 'bplugins-ai-provider-connectors' ); ?></span>
 					</div>
-					<div class="baioap-nav__group"><?php esc_html_e( 'Sections', 'b-all-in-one-ai-providers' ); ?></div>
+					<div class="baioap-nav__group"><?php esc_html_e( 'Sections', 'bplugins-ai-provider-connectors' ); ?></div>
 					<?php foreach ( $tabs as $key => $meta ) : ?>
 						<a href="<?php echo esc_url( $this->page_url( $key ) ); ?>" class="nav-tab baioap-nav__item<?php echo $tab === $key ? ' nav-tab-active' : ''; ?>" data-tab="<?php echo esc_attr( $key ); ?>" <?php echo $tab === $key ? 'aria-current="page"' : ''; ?>>
 							<span class="dashicons <?php echo esc_attr( $meta[1] ); ?>"></span>
@@ -376,11 +376,11 @@ class BAIOAP_Admin {
 						</a>
 					<?php endforeach; ?>
 
-					<div class="baioap-nav__group"><?php esc_html_e( 'At a glance', 'b-all-in-one-ai-providers' ); ?></div>
+					<div class="baioap-nav__group"><?php esc_html_e( 'At a glance', 'bplugins-ai-provider-connectors' ); ?></div>
 					<div class="baioap-stats" id="baioap-stats">
-						<span class="baioap-stat"><strong data-stat="enabled"><?php echo (int) $enabled_count; ?></strong> <?php esc_html_e( 'enabled', 'b-all-in-one-ai-providers' ); ?></span>
-						<span class="baioap-stat"><strong data-stat="keyed"><?php echo (int) $keyed_count; ?></strong> <?php esc_html_e( 'with an API key', 'b-all-in-one-ai-providers' ); ?></span>
-						<span class="baioap-stat"><strong><?php echo (int) count( $custom ); ?></strong> / <?php echo (int) BAIOAP_Catalog::CUSTOM_SLOTS; ?> <?php esc_html_e( 'custom', 'b-all-in-one-ai-providers' ); ?></span>
+						<span class="baioap-stat"><strong data-stat="enabled"><?php echo (int) $enabled_count; ?></strong> <?php esc_html_e( 'enabled', 'bplugins-ai-provider-connectors' ); ?></span>
+						<span class="baioap-stat"><strong data-stat="keyed"><?php echo (int) $keyed_count; ?></strong> <?php esc_html_e( 'with an API key', 'bplugins-ai-provider-connectors' ); ?></span>
+						<span class="baioap-stat"><strong><?php echo (int) count( $custom ); ?></strong> / <?php echo (int) BAIOAP_Catalog::CUSTOM_SLOTS; ?> <?php esc_html_e( 'custom', 'bplugins-ai-provider-connectors' ); ?></span>
 					</div>
 				</nav>
 
@@ -393,8 +393,8 @@ class BAIOAP_Admin {
 							<div class="baioap-panel__title">
 								<span class="baioap-panel__icon"><span class="dashicons dashicons-cloud"></span></span>
 								<div>
-									<h2><?php esc_html_e( 'Providers', 'b-all-in-one-ai-providers' ); ?></h2>
-									<p><?php esc_html_e( 'Disabled providers are hidden from the Connectors screen and never used by AI features. Keys you have already saved are kept.', 'b-all-in-one-ai-providers' ); ?></p>
+									<h2><?php esc_html_e( 'Providers', 'bplugins-ai-provider-connectors' ); ?></h2>
+									<p><?php esc_html_e( 'Disabled providers are hidden from the Connectors screen and never used by AI features. Keys you have already saved are kept.', 'bplugins-ai-provider-connectors' ); ?></p>
 								</div>
 							</div>
 						</div>
@@ -406,8 +406,8 @@ class BAIOAP_Admin {
 						<?php if ( $builtin ) : ?>
 							<div class="baioap-group">
 								<div class="baioap-group__head">
-									<h3><?php esc_html_e( 'Built-in providers', 'b-all-in-one-ai-providers' ); ?></h3>
-									<p><?php esc_html_e( 'Registered by WordPress or other plugins. Shown here so you can test them and see their status in one place.', 'b-all-in-one-ai-providers' ); ?></p>
+									<h3><?php esc_html_e( 'Built-in providers', 'bplugins-ai-provider-connectors' ); ?></h3>
+									<p><?php esc_html_e( 'Registered by WordPress or other plugins. Shown here so you can test them and see their status in one place.', 'bplugins-ai-provider-connectors' ); ?></p>
 								</div>
 							</div>
 							<div class="baioap-grid" id="baioap-builtin">
@@ -421,49 +421,49 @@ class BAIOAP_Admin {
 							<div class="baioap-panel__title">
 								<span class="baioap-panel__icon"><span class="dashicons dashicons-admin-links"></span></span>
 								<div>
-									<h2><?php esc_html_e( 'Custom providers', 'b-all-in-one-ai-providers' ); ?></h2>
-									<p><?php esc_html_e( 'Connect any OpenAI-compatible API — a hosted service, or a local server such as Ollama, LM Studio or vLLM. After adding it, save its API key on the Connectors screen.', 'b-all-in-one-ai-providers' ); ?></p>
+									<h2><?php esc_html_e( 'Custom providers', 'bplugins-ai-provider-connectors' ); ?></h2>
+									<p><?php esc_html_e( 'Connect any OpenAI-compatible API — a hosted service, or a local server such as Ollama, LM Studio or vLLM. After adding it, save its API key on the Connectors screen.', 'bplugins-ai-provider-connectors' ); ?></p>
 								</div>
 							</div>
 							<div class="baioap-toolbar__actions">
-								<span class="baioap-slots" id="baioap-slots"><?php echo esc_html( sprintf( /* translators: 1: used slots, 2: total slots. */ __( '%1$d of %2$d used', 'b-all-in-one-ai-providers' ), count( $custom ), BAIOAP_Catalog::CUSTOM_SLOTS ) ); ?></span>
-								<button type="button" class="button button-primary baioap-btn baioap-btn--primary" id="baioap-add-custom" <?php disabled( count( $custom ) >= BAIOAP_Catalog::CUSTOM_SLOTS ); ?>><?php esc_html_e( 'Add provider', 'b-all-in-one-ai-providers' ); ?></button>
+								<span class="baioap-slots" id="baioap-slots"><?php echo esc_html( sprintf( /* translators: 1: used slots, 2: total slots. */ __( '%1$d of %2$d used', 'bplugins-ai-provider-connectors' ), count( $custom ), BAIOAP_Catalog::CUSTOM_SLOTS ) ); ?></span>
+								<button type="button" class="button button-primary baioap-btn baioap-btn--primary" id="baioap-add-custom" <?php disabled( count( $custom ) >= BAIOAP_Catalog::CUSTOM_SLOTS ); ?>><?php esc_html_e( 'Add provider', 'bplugins-ai-provider-connectors' ); ?></button>
 							</div>
 						</div>
 
 						<div class="baioap-formpanel" id="baioap-custom-panel" hidden>
 							<form id="baioap-custom-form" class="baioap-form" novalidate>
-								<h2 class="baioap-formpanel__title baioap-field--full" data-role="panel-title"><?php esc_html_e( 'Add a custom provider', 'b-all-in-one-ai-providers' ); ?></h2>
+								<h2 class="baioap-formpanel__title baioap-field--full" data-role="panel-title"><?php esc_html_e( 'Add a custom provider', 'bplugins-ai-provider-connectors' ); ?></h2>
 								<div class="baioap-field">
-									<label for="baioap-f-name"><?php esc_html_e( 'Name', 'b-all-in-one-ai-providers' ); ?></label>
-									<input type="text" id="baioap-f-name" name="name" maxlength="60" required autocomplete="off" placeholder="<?php esc_attr_e( 'e.g. Ollama (local)', 'b-all-in-one-ai-providers' ); ?>" />
+									<label for="baioap-f-name"><?php esc_html_e( 'Name', 'bplugins-ai-provider-connectors' ); ?></label>
+									<input type="text" id="baioap-f-name" name="name" maxlength="60" required autocomplete="off" placeholder="<?php esc_attr_e( 'e.g. Ollama (local)', 'bplugins-ai-provider-connectors' ); ?>" />
 									<p class="baioap-field__error" data-role="error"></p>
 								</div>
 								<div class="baioap-field">
-									<label for="baioap-f-id"><?php esc_html_e( 'ID', 'b-all-in-one-ai-providers' ); ?></label>
+									<label for="baioap-f-id"><?php esc_html_e( 'ID', 'bplugins-ai-provider-connectors' ); ?></label>
 									<input type="text" id="baioap-f-id" name="id" maxlength="40" required autocomplete="off" pattern="[a-z0-9][a-z0-9_-]{1,39}" />
-									<p class="description"><?php esc_html_e( 'Lowercase letters, numbers, hyphens. Cannot be changed later — API keys are stored under it.', 'b-all-in-one-ai-providers' ); ?></p>
+									<p class="description"><?php esc_html_e( 'Lowercase letters, numbers, hyphens. Cannot be changed later — API keys are stored under it.', 'bplugins-ai-provider-connectors' ); ?></p>
 									<p class="baioap-field__error" data-role="error"></p>
 								</div>
 								<div class="baioap-field baioap-field--full">
-									<label for="baioap-f-base-url"><?php esc_html_e( 'Base URL', 'b-all-in-one-ai-providers' ); ?></label>
+									<label for="baioap-f-base-url"><?php esc_html_e( 'Base URL', 'bplugins-ai-provider-connectors' ); ?></label>
 									<input type="url" id="baioap-f-base-url" name="base_url" required autocomplete="off" placeholder="https://api.example.com/v1" />
-									<p class="description"><?php esc_html_e( 'The root of the OpenAI-compatible API. The plugin calls {base URL}/models and {base URL}/chat/completions.', 'b-all-in-one-ai-providers' ); ?></p>
+									<p class="description"><?php esc_html_e( 'The root of the OpenAI-compatible API. The plugin calls {base URL}/models and {base URL}/chat/completions.', 'bplugins-ai-provider-connectors' ); ?></p>
 									<p class="baioap-field__error" data-role="error"></p>
 								</div>
 								<div class="baioap-field">
-									<label for="baioap-f-credentials-url"><?php esc_html_e( 'Where to get an API key (optional)', 'b-all-in-one-ai-providers' ); ?></label>
+									<label for="baioap-f-credentials-url"><?php esc_html_e( 'Where to get an API key (optional)', 'bplugins-ai-provider-connectors' ); ?></label>
 									<input type="url" id="baioap-f-credentials-url" name="credentials_url" autocomplete="off" placeholder="https://" />
 									<p class="baioap-field__error" data-role="error"></p>
 								</div>
 								<div class="baioap-field">
-									<label for="baioap-f-description"><?php esc_html_e( 'Description (optional)', 'b-all-in-one-ai-providers' ); ?></label>
+									<label for="baioap-f-description"><?php esc_html_e( 'Description (optional)', 'bplugins-ai-provider-connectors' ); ?></label>
 									<input type="text" id="baioap-f-description" name="description" maxlength="160" autocomplete="off" />
 									<p class="baioap-field__error" data-role="error"></p>
 								</div>
 								<div class="baioap-form__actions">
-									<button type="submit" class="button button-primary baioap-btn baioap-btn--primary" data-role="submit"><?php esc_html_e( 'Save provider', 'b-all-in-one-ai-providers' ); ?></button>
-									<button type="button" class="button baioap-btn" data-role="cancel"><?php esc_html_e( 'Cancel', 'b-all-in-one-ai-providers' ); ?></button>
+									<button type="submit" class="button button-primary baioap-btn baioap-btn--primary" data-role="submit"><?php esc_html_e( 'Save provider', 'bplugins-ai-provider-connectors' ); ?></button>
+									<button type="button" class="button baioap-btn" data-role="cancel"><?php esc_html_e( 'Cancel', 'bplugins-ai-provider-connectors' ); ?></button>
 									<span class="spinner"></span>
 								</div>
 							</form>
@@ -474,8 +474,8 @@ class BAIOAP_Admin {
 						</div>
 						<div class="baioap-empty" id="baioap-custom-empty" <?php echo $custom ? 'hidden' : ''; ?>>
 							<span class="dashicons dashicons-cloud" aria-hidden="true"></span>
-							<h3><?php esc_html_e( 'No custom providers yet.', 'b-all-in-one-ai-providers' ); ?></h3>
-							<p><?php esc_html_e( 'Add one to use a provider that is not bundled, or a model server running on your own hardware.', 'b-all-in-one-ai-providers' ); ?></p>
+							<h3><?php esc_html_e( 'No custom providers yet.', 'bplugins-ai-provider-connectors' ); ?></h3>
+							<p><?php esc_html_e( 'Add one to use a provider that is not bundled, or a model server running on your own hardware.', 'bplugins-ai-provider-connectors' ); ?></p>
 						</div>
 					</section>
 
@@ -484,21 +484,21 @@ class BAIOAP_Admin {
 							<div class="baioap-panel__title">
 								<span class="baioap-panel__icon"><span class="dashicons dashicons-sort"></span></span>
 								<div>
-									<h2><?php esc_html_e( 'Priority', 'b-all-in-one-ai-providers' ); ?></h2>
-									<p><?php esc_html_e( 'When a feature needs an AI provider, WordPress walks this list from the top and uses the first connected provider that supports the task. Drag to reorder, or use the arrows.', 'b-all-in-one-ai-providers' ); ?></p>
+									<h2><?php esc_html_e( 'Priority', 'bplugins-ai-provider-connectors' ); ?></h2>
+									<p><?php esc_html_e( 'When a feature needs an AI provider, WordPress walks this list from the top and uses the first connected provider that supports the task. Drag to reorder, or use the arrows.', 'bplugins-ai-provider-connectors' ); ?></p>
 								</div>
 							</div>
 						</div>
 						<?php if ( empty( $priority ) ) : ?>
-							<div class="baioap-empty"><p><?php esc_html_e( 'No AI providers are registered yet.', 'b-all-in-one-ai-providers' ); ?></p></div>
+							<div class="baioap-empty"><p><?php esc_html_e( 'No AI providers are registered yet.', 'bplugins-ai-provider-connectors' ); ?></p></div>
 						<?php else : ?>
 							<div class="baioap-group">
 								<ol class="baioap-priority" id="baioap-priority">
 									<?php foreach ( $priority as $index => $row ) { $this->render_priority_item( $row, $index + 1 ); } ?>
 								</ol>
 								<div class="baioap-priority__actions">
-									<button type="button" class="button button-primary baioap-btn baioap-btn--primary" id="baioap-priority-save" disabled><?php esc_html_e( 'Save order', 'b-all-in-one-ai-providers' ); ?></button>
-									<button type="button" class="button baioap-btn" id="baioap-priority-reset" <?php disabled( empty( BAIOAP_Priority::instance()->get_saved_order() ) ); ?>><?php esc_html_e( 'Reset to default', 'b-all-in-one-ai-providers' ); ?></button>
+									<button type="button" class="button button-primary baioap-btn baioap-btn--primary" id="baioap-priority-save" disabled><?php esc_html_e( 'Save order', 'bplugins-ai-provider-connectors' ); ?></button>
+									<button type="button" class="button baioap-btn" id="baioap-priority-reset" <?php disabled( empty( BAIOAP_Priority::instance()->get_saved_order() ) ); ?>><?php esc_html_e( 'Reset to default', 'bplugins-ai-provider-connectors' ); ?></button>
 									<span class="baioap-priority__hint" id="baioap-priority-hint"></span>
 								</div>
 							</div>
@@ -531,7 +531,7 @@ class BAIOAP_Admin {
 		check_ajax_referer( 'baioap_toggle_videos' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Not allowed.', 'b-all-in-one-ai-providers' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Not allowed.', 'bplugins-ai-provider-connectors' ) ), 403 );
 		}
 
 		$hidden = empty( $_POST['hidden'] ) ? 0 : 1; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- checked above.
@@ -550,10 +550,10 @@ class BAIOAP_Admin {
 		$videos = array(
 			array(
 				'id'     => BAIOAP_INTRO_VIDEO,
-				'title'  => __( 'See what the plugin does', 'b-all-in-one-ai-providers' ),
-				'copy'   => __( 'A quick look at the bundled providers, custom OpenAI-compatible endpoints and the priority list. The full step-by-step tutorial is coming soon.', 'b-all-in-one-ai-providers' ),
-				'label'  => __( 'Play the video (opens YouTube in this page)', 'b-all-in-one-ai-providers' ),
-				'length' => __( 'Teaser', 'b-all-in-one-ai-providers' ),
+				'title'  => __( 'See what the plugin does', 'bplugins-ai-provider-connectors' ),
+				'copy'   => __( 'A quick look at the bundled providers, custom OpenAI-compatible endpoints and the priority list. The full step-by-step tutorial is coming soon.', 'bplugins-ai-provider-connectors' ),
+				'label'  => __( 'Play the video (opens YouTube in this page)', 'bplugins-ai-provider-connectors' ),
+				'length' => __( 'Teaser', 'bplugins-ai-provider-connectors' ),
 			),
 		);
 		?>
@@ -561,13 +561,13 @@ class BAIOAP_Admin {
 			<div class="baioap-videos__bar">
 				<div class="baioap-videos__label">
 					<span class="dashicons dashicons-video-alt3" aria-hidden="true"></span>
-					<span><?php esc_html_e( 'Watch and learn', 'b-all-in-one-ai-providers' ); ?></span>
-					<span class="baioap-pill baioap-pill--soon"><?php esc_html_e( 'Start here', 'b-all-in-one-ai-providers' ); ?></span>
+					<span><?php esc_html_e( 'Watch and learn', 'bplugins-ai-provider-connectors' ); ?></span>
+					<span class="baioap-pill baioap-pill--soon"><?php esc_html_e( 'Start here', 'bplugins-ai-provider-connectors' ); ?></span>
 				</div>
 				<button type="button" class="baioap-videos__toggle" data-baioap-videos-toggle
 					aria-expanded="<?php echo $hidden ? 'false' : 'true'; ?>" aria-controls="baioap-videos-panel">
 					<span class="baioap-videos__chev" aria-hidden="true"></span>
-					<span data-baioap-videos-label><?php echo $hidden ? esc_html__( 'Show videos', 'b-all-in-one-ai-providers' ) : esc_html__( 'Hide videos', 'b-all-in-one-ai-providers' ); ?></span>
+					<span data-baioap-videos-label><?php echo $hidden ? esc_html__( 'Show videos', 'bplugins-ai-provider-connectors' ) : esc_html__( 'Hide videos', 'bplugins-ai-provider-connectors' ); ?></span>
 				</button>
 			</div>
 
@@ -585,13 +585,13 @@ class BAIOAP_Admin {
 						<div class="baioap-vid__body">
 							<h3><?php echo esc_html( $video['title'] ); ?></h3>
 							<p><?php echo esc_html( $video['copy'] ); ?></p>
-							<a class="baioap-link" href="<?php echo esc_url( 'https://www.youtube.com/watch?v=' . $video['id'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Watch on YouTube', 'b-all-in-one-ai-providers' ); ?> &rarr;</a>
+							<a class="baioap-link" href="<?php echo esc_url( 'https://www.youtube.com/watch?v=' . $video['id'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Watch on YouTube', 'bplugins-ai-provider-connectors' ); ?> &rarr;</a>
 						</div>
 					</article>
 				<?php endforeach; ?>
 			</div>
 
-			<p class="baioap-videos__note"<?php echo $hidden ? ' hidden' : ''; ?>><?php esc_html_e( 'The player is not loaded from YouTube until you press play.', 'b-all-in-one-ai-providers' ); ?></p>
+			<p class="baioap-videos__note"<?php echo $hidden ? ' hidden' : ''; ?>><?php esc_html_e( 'The player is not loaded from YouTube until you press play.', 'bplugins-ai-provider-connectors' ); ?></p>
 		</div>
 		<?php
 	}
@@ -609,11 +609,11 @@ class BAIOAP_Admin {
 		$initials = strtoupper( mb_substr( trim( (string) $row['name'] ), 0, 2 ) );
 
 		if ( ! $enabled ) {
-			$badge = array( 'muted', __( 'Disabled', 'b-all-in-one-ai-providers' ) );
+			$badge = array( 'muted', __( 'Disabled', 'bplugins-ai-provider-connectors' ) );
 		} elseif ( ! $has_key ) {
-			$badge = array( 'idle', __( 'No API key', 'b-all-in-one-ai-providers' ) );
+			$badge = array( 'idle', __( 'No API key', 'bplugins-ai-provider-connectors' ) );
 		} else {
-			$badge = array( 'info', __( 'Key set', 'b-all-in-one-ai-providers' ) );
+			$badge = array( 'info', __( 'Key set', 'bplugins-ai-provider-connectors' ) );
 		}
 		?>
 		<article class="baioap-card<?php echo $enabled ? '' : ' is-disabled'; ?>"
@@ -639,16 +639,16 @@ class BAIOAP_Admin {
 					<h3>
 						<?php echo esc_html( $row['name'] ); ?>
 						<?php if ( 'custom' === $row['source'] ) : ?>
-							<span class="baioap-chip"><?php esc_html_e( 'Custom', 'b-all-in-one-ai-providers' ); ?></span>
+							<span class="baioap-chip"><?php esc_html_e( 'Custom', 'bplugins-ai-provider-connectors' ); ?></span>
 						<?php elseif ( 'builtin' === $row['source'] ) : ?>
-							<span class="baioap-chip"><?php esc_html_e( 'Built-in', 'b-all-in-one-ai-providers' ); ?></span>
+							<span class="baioap-chip"><?php esc_html_e( 'Built-in', 'bplugins-ai-provider-connectors' ); ?></span>
 						<?php endif; ?>
 					</h3>
 				</div>
 				<?php if ( $is_ours ) : ?>
 					<label class="baioap-switch">
 						<input type="checkbox" role="switch" class="baioap-switch__input" <?php checked( $enabled ); ?>
-							aria-label="<?php echo esc_attr( sprintf( /* translators: %s: provider name. */ __( 'Enable %s', 'b-all-in-one-ai-providers' ), $row['name'] ) ); ?>" />
+							aria-label="<?php echo esc_attr( sprintf( /* translators: %s: provider name. */ __( 'Enable %s', 'bplugins-ai-provider-connectors' ), $row['name'] ) ); ?>" />
 						<span class="baioap-switch__track" aria-hidden="true"></span>
 					</label>
 				<?php endif; ?>
@@ -663,17 +663,17 @@ class BAIOAP_Admin {
 				<span class="baioap-badge is-<?php echo esc_attr( $badge[0] ); ?>" data-role="badge"><?php echo esc_html( $badge[1] ); ?></span>
 				<span class="baioap-card__message" data-role="message" aria-live="polite"></span>
 				<?php if ( 'custom' !== $row['source'] && ! empty( $row['credentialsUrl'] ) ) : ?>
-					<a class="baioap-card__link" href="<?php echo esc_url( $row['credentialsUrl'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get an API key', 'b-all-in-one-ai-providers' ); ?> <span aria-hidden="true">&#8599;</span></a>
+					<a class="baioap-card__link" href="<?php echo esc_url( $row['credentialsUrl'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get an API key', 'bplugins-ai-provider-connectors' ); ?> <span aria-hidden="true">&#8599;</span></a>
 				<?php endif; ?>
 			</div>
 
 			<div class="baioap-card__actions">
-				<button type="button" class="button baioap-test" <?php disabled( ! $enabled ); ?>><?php esc_html_e( 'Test connection', 'b-all-in-one-ai-providers' ); ?></button>
-				<a class="button" href="<?php echo esc_url( $this->connectors_url() ); ?>"><?php echo $has_key ? esc_html__( 'Manage key', 'b-all-in-one-ai-providers' ) : esc_html__( 'Add key', 'b-all-in-one-ai-providers' ); ?></a>
+				<button type="button" class="button baioap-test" <?php disabled( ! $enabled ); ?>><?php esc_html_e( 'Test connection', 'bplugins-ai-provider-connectors' ); ?></button>
+				<a class="button" href="<?php echo esc_url( $this->connectors_url() ); ?>"><?php echo $has_key ? esc_html__( 'Manage key', 'bplugins-ai-provider-connectors' ) : esc_html__( 'Add key', 'bplugins-ai-provider-connectors' ); ?></a>
 				<?php if ( 'custom' === $row['source'] ) : ?>
 					<span class="baioap-card__links">
-						<button type="button" class="button-link baioap-edit"><?php esc_html_e( 'Edit', 'b-all-in-one-ai-providers' ); ?></button>
-						<button type="button" class="button-link button-link-delete baioap-delete"><?php esc_html_e( 'Delete', 'b-all-in-one-ai-providers' ); ?></button>
+						<button type="button" class="button-link baioap-edit"><?php esc_html_e( 'Edit', 'bplugins-ai-provider-connectors' ); ?></button>
+						<button type="button" class="button-link button-link-delete baioap-delete"><?php esc_html_e( 'Delete', 'bplugins-ai-provider-connectors' ); ?></button>
 					</span>
 				<?php endif; ?>
 			</div>
@@ -700,12 +700,12 @@ class BAIOAP_Admin {
 				<span class="baioap-priority__logo baioap-priority__logo--placeholder" aria-hidden="true"></span>
 			<?php endif; ?>
 			<span class="baioap-priority__name"><?php echo esc_html( $row['name'] ); ?>
-				<?php if ( 'custom' === $row['source'] ) : ?><span class="baioap-chip"><?php esc_html_e( 'Custom', 'b-all-in-one-ai-providers' ); ?></span><?php elseif ( 'builtin' === $row['source'] ) : ?><span class="baioap-chip"><?php esc_html_e( 'Built-in', 'b-all-in-one-ai-providers' ); ?></span><?php endif; ?>
+				<?php if ( 'custom' === $row['source'] ) : ?><span class="baioap-chip"><?php esc_html_e( 'Custom', 'bplugins-ai-provider-connectors' ); ?></span><?php elseif ( 'builtin' === $row['source'] ) : ?><span class="baioap-chip"><?php esc_html_e( 'Built-in', 'bplugins-ai-provider-connectors' ); ?></span><?php endif; ?>
 			</span>
-			<span class="baioap-badge is-<?php echo $has_key ? 'success' : 'idle'; ?>"><?php echo $has_key ? esc_html__( 'Key set', 'b-all-in-one-ai-providers' ) : esc_html__( 'No API key', 'b-all-in-one-ai-providers' ); ?></span>
+			<span class="baioap-badge is-<?php echo $has_key ? 'success' : 'idle'; ?>"><?php echo $has_key ? esc_html__( 'Key set', 'bplugins-ai-provider-connectors' ) : esc_html__( 'No API key', 'bplugins-ai-provider-connectors' ); ?></span>
 			<span class="baioap-priority__buttons">
-				<button type="button" class="button button-small baioap-up" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: provider name. */ __( 'Move %s up', 'b-all-in-one-ai-providers' ), $row['name'] ) ); ?>">&#9650;</button>
-				<button type="button" class="button button-small baioap-down" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: provider name. */ __( 'Move %s down', 'b-all-in-one-ai-providers' ), $row['name'] ) ); ?>">&#9660;</button>
+				<button type="button" class="button button-small baioap-up" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: provider name. */ __( 'Move %s up', 'bplugins-ai-provider-connectors' ), $row['name'] ) ); ?>">&#9650;</button>
+				<button type="button" class="button button-small baioap-down" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: provider name. */ __( 'Move %s down', 'bplugins-ai-provider-connectors' ), $row['name'] ) ); ?>">&#9660;</button>
 			</span>
 		</li>
 		<?php

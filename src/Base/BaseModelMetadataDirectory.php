@@ -6,7 +6,7 @@
  * only need to point at their provider class (for URL construction) and,
  * optionally, override `modelIdFilter()` to drop non-text models from the list.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

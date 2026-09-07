@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1544" height="500" viewBox="0 0 1544 500">
   <!--
-    B All-in-One AI Providers — wordpress.org banner (1544x500), variant "aiswitch-animated".
+    bPlugins AI Provider Connectors — wordpress.org banner (1544x500), variant "aiswitch-animated".
     bPlugins brand: Space Grotesk, #146EF5 blue, #FF7A00 orange, #070127 navy.
   -->
   <defs>
@@ -90,8 +90,8 @@
 
   <!-- MESSAGE ZONE -->
   <g class="sg">
-    <rect class="in in-1" x="560" y="100" width="397" height="46" fill="#146EF5" fill-opacity="0.10"/>
-    <text x="758.5" class="in in-1" y="130" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="3" fill="#0B3FA8">ALL-IN-ONE AI PROVIDERS</text>
+    <rect class="in in-1" x="560" y="100" width="528" height="46" fill="#146EF5" fill-opacity="0.10"/>
+    <text x="824.0" class="in in-1" y="130" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="3" fill="#0B3FA8">BPLUGINS AI PROVIDER CONNECTORS</text>
 
     <text class="in in-2" x="560" y="240" font-size="88" font-weight="700" fill="#070127" letter-spacing="-2">Connect any AI</text>
     <text class="in in-3" x="560" y="328" font-size="88" font-weight="700" fill="#070127" letter-spacing="-2">to WordPress.</text>

@@ -2,7 +2,7 @@
 /**
  * Cohere Text Generation Model.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

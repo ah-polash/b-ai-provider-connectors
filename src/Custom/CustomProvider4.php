@@ -2,7 +2,7 @@
 /**
  * Custom provider slot 4 (an OpenAI-compatible endpoint configured by the site owner).
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 declare(strict_types=1);

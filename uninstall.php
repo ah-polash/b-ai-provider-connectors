@@ -6,7 +6,7 @@
  * `connectors_ai_{provider}_api_key` options and would be reused if the plugin is
  * reinstalled. Keys for custom providers are removed because nothing else can use them.
  *
- * @package BAllInOneAIProviders
+ * @package BPluginsAIProviderConnectors
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
