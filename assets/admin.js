@@ -1,10 +1,10 @@
 /**
- * bPlugins AI Provider Connectors — Settings → AI Providers screen.
+ * AI Provider Connectors — Settings → AI Providers screen.
  *
  * Progressive enhancement over the server-rendered page: tabs, enable/disable
  * switches, live connection checks, the custom-provider form, and the priority list.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 ( function ( window, document ) {
 	'use strict';
@@ -16,7 +16,7 @@
 
 	var apiFetch = window.wp.apiFetch;
 	var i18n     = window.wp.i18n || {};
-	var TD       = 'bplugins-ai-provider-connectors';
+	var TD       = 'b-ai-provider-connectors';
 	var __       = i18n.__ ? function ( s ) { return i18n.__( s, TD ); } : function ( s ) { return s; };
 	var sprintf  = i18n.sprintf || function ( s ) {
 		var args = Array.prototype.slice.call( arguments, 1 ), i = 0;

@@ -8,7 +8,7 @@
  * owner's order by reordering the registry's private `$registeredIdsToClassNames`
  * array via reflection just after every other provider has registered.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -1,8 +1,8 @@
 /**
- * bPlugins AI Provider Connectors — injects a "Test Connection Again" button beside the
+ * AI Provider Connectors — injects a "Test Connection Again" button beside the
  * "Connected" badge on the Connectors screen.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 ( function ( window, document ) {
 	'use strict';
@@ -21,8 +21,8 @@
 	var SETTINGS_MARKER   = 'data-baioap-settings-bound';
 	var RESULT_MARKER     = 'data-baioap-result';
 	var BADGE_TEXT        = __( 'Connected' );
-	var BUTTON_TEXT       = __( 'Test Connection', 'bplugins-ai-provider-connectors' );
-	var BUTTON_TEXT_BUSY  = __( 'Testing…', 'bplugins-ai-provider-connectors' );
+	var BUTTON_TEXT       = __( 'Test Connection', 'b-ai-provider-connectors' );
+	var BUTTON_TEXT_BUSY  = __( 'Testing…', 'b-ai-provider-connectors' );
 	var TESTABLE_TYPES    = { ai_provider: true };
 
 	/**
@@ -182,7 +182,7 @@
 	 */
 	function runTest( connector, button, resultEl ) {
 		if ( ! apiFetch ) {
-			renderResult( resultEl, button, false, __( 'wp.apiFetch is not available.', 'bplugins-ai-provider-connectors' ) );
+			renderResult( resultEl, button, false, __( 'wp.apiFetch is not available.', 'b-ai-provider-connectors' ) );
 			return;
 		}
 
@@ -203,12 +203,12 @@
 		} ).then( function ( response ) {
 			var success = !! ( response && response.success );
 			var message = ( response && response.message ) || ( success
-				? __( 'Connection successful.', 'bplugins-ai-provider-connectors' )
-				: __( 'Connection failed.', 'bplugins-ai-provider-connectors' )
+				? __( 'Connection successful.', 'b-ai-provider-connectors' )
+				: __( 'Connection failed.', 'b-ai-provider-connectors' )
 			);
 			renderResult( resultEl, button, success, message );
 		} ).catch( function ( error ) {
-			var message = ( error && error.message ) || __( 'Connection test failed.', 'bplugins-ai-provider-connectors' );
+			var message = ( error && error.message ) || __( 'Connection test failed.', 'b-ai-provider-connectors' );
 			renderResult( resultEl, button, false, message );
 		} ).finally( function () {
 			button.disabled = false;

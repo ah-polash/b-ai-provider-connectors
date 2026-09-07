@@ -6,7 +6,7 @@
  * AI Client's default "list models" probe would report *any* API key as valid. This
  * probe calls an authenticated endpoint instead, so an invalid key is reported as such.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);

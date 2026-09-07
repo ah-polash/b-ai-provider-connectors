@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       bPlugins AI Provider Connectors
- * Plugin URI:        https://github.com/ah-polash/bplugins-ai-provider-connectors
+ * Plugin Name:       AI Provider Connectors
+ * Plugin URI:        https://github.com/ah-polash/b-ai-provider-connectors
  * Description:       Connect 11 popular AI providers (OpenRouter, Mistral, Cohere, Groq, xAI, DeepSeek, Perplexity, Together, Fireworks, Hugging Face, Replicate) or any OpenAI-compatible endpoint to the WordPress AI Client, test API keys with one click, and choose which provider is used first.
  * Version:           1.0.0
  * Requires at least: 7.0
@@ -10,9 +10,9 @@
  * Author URI:        https://bplugins.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       bplugins-ai-provider-connectors
+ * Text Domain:       b-ai-provider-connectors
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

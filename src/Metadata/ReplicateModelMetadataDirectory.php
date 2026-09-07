@@ -2,7 +2,7 @@
 /**
  * Replicate Model Metadata Directory.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);

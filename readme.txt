@@ -1,4 +1,4 @@
-=== bPlugins AI Provider Connectors ===
+=== AI Provider Connectors ===
 Contributors:      bplugins, abuhayat
 Tags:              ai, connectors, ai provider, openrouter, mistral
 Requires at least: 7.0
@@ -12,7 +12,7 @@ Connect 11 AI providers or any OpenAI-compatible endpoint to WordPress, test API
 
 == Description ==
 
-bPlugins AI Provider Connectors extends the WordPress AI Client and the core Connectors screen (Settings &rarr; Connectors) with four features:
+AI Provider Connectors extends the WordPress AI Client and the core Connectors screen (Settings &rarr; Connectors) with four features:
 
 * **11 ready-to-use AI providers.** Connector cards for OpenRouter, Mistral AI, Cohere, Groq, xAI (Grok), DeepSeek, Perplexity, Together AI, Fireworks AI, Hugging Face and Replicate. Paste an API key, save it, and every feature that uses the WordPress AI Client (such as the AI plugin's excerpt and summary tools) can route through that provider — exactly like the built-in Anthropic, OpenAI and Google providers.
 * **Test Connection button.** A "Test Connection" button next to the "Connected" badge — and inside the expanded edit panel — for every supported provider. Clicking it re-validates the stored API key against the provider's live API and shows the result in a tooltip.
@@ -48,7 +48,7 @@ Non-AI connectors (such as Akismet) are not live-tested because they require pro
 
 = Source code =
 
-The full source code is developed in the open on GitHub: https://github.com/ah-polash/bplugins-ai-provider-connectors
+The full source code is developed in the open on GitHub: https://github.com/ah-polash/b-ai-provider-connectors
 
 == External services ==
 
@@ -70,7 +70,7 @@ The **AI Providers** settings screen shows a short video. Its preview thumbnail 
 
 == Installation ==
 
-1. Upload the `bplugins-ai-provider-connectors` folder to the `/wp-content/plugins/` directory, or install it from the Plugins screen.
+1. Upload the `b-ai-provider-connectors` folder to the `/wp-content/plugins/` directory, or install it from the Plugins screen.
 2. Activate the plugin through the **Plugins** screen.
 3. Visit **Settings &rarr; Connectors**. The 11 bundled providers appear in the list alongside any AI Provider plugins you already have installed. Paste an API key into any of them, save, then click **Test Connection** to verify.
 4. Visit **Settings &rarr; AI Providers** to switch providers on or off, add custom OpenAI-compatible providers, and choose which provider is tried first.

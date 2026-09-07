@@ -6,7 +6,7 @@
  * the AI Client's OpenAI-compatible base; subclasses only need to point at
  * their provider class (for URL construction).
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);

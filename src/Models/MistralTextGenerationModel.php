@@ -2,7 +2,7 @@
 /**
  * Mistral Text Generation Model.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);

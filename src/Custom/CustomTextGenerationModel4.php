@@ -2,7 +2,7 @@
 /**
  * Text generation model for custom provider slot 4.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);

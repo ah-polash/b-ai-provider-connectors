@@ -2,7 +2,7 @@
 /**
  * Fireworks Provider.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -25,7 +25,7 @@ class FireworksProvider extends BaseProvider {
 			'baseUrl'        => 'https://api.fireworks.ai/inference/v1',
 			'credentialsUrl' => 'https://fireworks.ai/account/api-keys',
 			'description'    => function_exists( '__' )
-				? __( 'Production inference for open models.', 'bplugins-ai-provider-connectors' )
+				? __( 'Production inference for open models.', 'b-ai-provider-connectors' )
 				: 'Production inference for open models.',
 			'logoFile'       => 'fireworks.svg',
 			'directoryClass' => FireworksModelMetadataDirectory::class,

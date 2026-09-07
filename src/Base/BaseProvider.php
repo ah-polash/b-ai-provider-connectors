@@ -7,7 +7,7 @@
  * and the model directory / text-generation model class names. Everything else
  * (URL building, provider metadata, availability probe) is shared.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -31,7 +31,7 @@ use WordPress\AiClient\Providers\Models\DTO\ModelMetadata;
 use WordPress\AiClient\AiClient;
 
 /**
- * Abstract base for bPlugins AI Provider Connectors provider classes.
+ * Abstract base for AI Provider Connectors provider classes.
  *
  * @since 1.2.0
  */

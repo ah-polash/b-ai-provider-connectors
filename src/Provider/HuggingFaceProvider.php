@@ -2,7 +2,7 @@
 /**
  * Hugging Face Provider.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -26,7 +26,7 @@ class HuggingFaceProvider extends BaseProvider {
 			'credentialsUrl' => 'https://huggingface.co/settings/tokens',
 			'availabilityUrl' => 'https://huggingface.co/api/whoami-v2',
 			'description'    => function_exists( '__' )
-				? __( 'Inference Router proxying many model providers.', 'bplugins-ai-provider-connectors' )
+				? __( 'Inference Router proxying many model providers.', 'b-ai-provider-connectors' )
 				: 'Inference Router proxying many model providers.',
 			'logoFile'       => 'huggingface.svg',
 			'directoryClass' => HuggingFaceModelMetadataDirectory::class,

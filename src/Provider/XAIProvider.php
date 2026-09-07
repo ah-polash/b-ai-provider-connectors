@@ -2,7 +2,7 @@
 /**
  * X A I Provider.
  *
- * @package BPluginsAIProviderConnectors
+ * @package BAIProviderConnectors
  */
 
 declare(strict_types=1);
@@ -25,7 +25,7 @@ class XAIProvider extends BaseProvider {
 			'baseUrl'        => 'https://api.x.ai/v1', // phpcs:ignore PluginCheck.CodeAnalysis.AIProvider.DirectIntegration -- This plugin registers the provider with the WordPress AI Client; the base URL is required for that registration.
 			'credentialsUrl' => 'https://console.x.ai/',
 			'description'    => function_exists( '__' )
-				? __( 'Grok models from xAI.', 'bplugins-ai-provider-connectors' )
+				? __( 'Grok models from xAI.', 'b-ai-provider-connectors' )
 				: 'Grok models from xAI.',
 			'logoFile'       => 'xai.svg',
 			'directoryClass' => XAIModelMetadataDirectory::class,
