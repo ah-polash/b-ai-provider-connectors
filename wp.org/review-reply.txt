@@ -1,0 +1,39 @@
+Subject: Re: [WordPress Plugin Directory] Review in Progress: B All-in-One AI Providers
+
+Hi,
+
+Thank you for the review and for the naming guidance.
+
+We agree the previous name was not distinctive, and we have adopted the
+suggested name:
+
+  Display name: bPlugins AI Provider Connectors
+  Requested slug: bplugins-ai-provider-connectors
+
+"bPlugins" is our own brand (we publish on WordPress.org under the
+bplugins author account, e.g. html5-video-player, 3d-viewer,
+button-block), so the name is distinctive to us while the rest
+describes exactly what the plugin does: it registers additional AI
+provider connectors with the WordPress AI Client and the core
+Connectors screen.
+
+Changes made in the attached/updated package:
+
+  - Display name updated in the plugin header and readme.txt
+  - Slug and text domain updated to bplugins-ai-provider-connectors
+    throughout (main file renamed, all internationalization functions,
+    install path and support links in the readme)
+  - Settings screen title updated to match
+
+Please reserve the new slug bplugins-ai-provider-connectors for us.
+If the "plugin" substring inside our brand name is a problem for the
+directory tooling, we are happy to go with
+
+  Display name: AI Provider Connectors by bPlugins
+  Slug: ai-provider-connectors
+
+instead; just let us know which you prefer and we will adjust the
+package before resubmitting.
+
+Thanks again for your time,
+bPlugins team
