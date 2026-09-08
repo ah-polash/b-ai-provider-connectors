@@ -1,4 +1,4 @@
-=== AI Provider Connectors ===
+=== bPlugins AI Provider Connectors ===
 Contributors:      bplugins, abuhayat
 Tags:              ai, connectors, ai provider, openrouter, mistral
 Requires at least: 7.0
