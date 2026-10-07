@@ -182,7 +182,7 @@ class BAIOAP_REST {
 	public function handle_test( WP_REST_Request $request ) {
 		$id = (string) $request['connector_id'];
 
-		if ( ! function_exists( 'wp_get_connector' ) || ! function_exists( '_wp_connectors_is_ai_api_key_valid' ) ) {
+		if ( ! function_exists( 'wp_get_connector' ) ) {
 			return new WP_Error(
 				'baioap_unavailable',
 				__( 'The Connectors API is not available on this site.', 'b-ai-provider-connectors' ),
@@ -193,39 +193,37 @@ class BAIOAP_REST {
 		$is_ours   = BAIOAP_Catalog::is_ours( $id );
 		$connector = wp_get_connector( $id );
 
-		if ( null === $connector && ! $is_ours ) {
+		if ( null === $connector ) {
+			if ( $is_ours ) {
+				return rest_ensure_response( $this->result( false, 'disabled', __( 'Enable this provider to test its connection.', 'b-ai-provider-connectors' ) ) );
+			}
 			return new WP_Error( 'baioap_unknown_connector', __( 'Unknown connector.', 'b-ai-provider-connectors' ), array( 'status' => 404 ) );
 		}
 
-		if ( null !== $connector ) {
-			$auth = isset( $connector['authentication'] ) && is_array( $connector['authentication'] ) ? $connector['authentication'] : array();
-			if ( empty( $auth['method'] ) || 'api_key' !== $auth['method'] ) {
-				return rest_ensure_response( $this->result( false, 'unsupported', __( 'This connector does not use API key authentication.', 'b-ai-provider-connectors' ) ) );
-			}
-			if ( ! $is_ours && ( ! isset( $connector['type'] ) || 'ai_provider' !== $connector['type'] ) ) {
-				// Other connectors: we can confirm a key is present, but cannot reach the provider from here.
-				$present = '' !== $this->resolve_api_key( $auth );
-				return rest_ensure_response(
-					$present
-						? $this->result( true, 'key_present', __( 'An API key is configured. Live validation is not available for this connector.', 'b-ai-provider-connectors' ) )
-						: $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'b-ai-provider-connectors' ) )
-				);
-			}
-			$api_key = $this->resolve_api_key( $auth );
-		} else {
-			$api_key = BAIOAP_Catalog::key_value( $id );
+		$auth = isset( $connector['authentication'] ) && is_array( $connector['authentication'] ) ? $connector['authentication'] : array();
+		if ( empty( $auth['method'] ) || 'api_key' !== $auth['method'] ) {
+			return rest_ensure_response( $this->result( false, 'unsupported', __( 'This connector does not use API key authentication.', 'b-ai-provider-connectors' ) ) );
 		}
 
-		if ( '' === $api_key ) {
+		$key_source = function_exists( '_wp_connectors_get_api_key_source' ) && ! empty( $auth['setting_name'] )
+			? _wp_connectors_get_api_key_source( $auth['setting_name'], $auth['env_var_name'] ?? '', $auth['constant_name'] ?? '' )
+			: 'none';
+
+		if ( ! $is_ours && ( ! isset( $connector['type'] ) || 'ai_provider' !== $connector['type'] ) ) {
+			// Other connectors: we can confirm a key is present, but cannot reach the provider from here.
+			return rest_ensure_response(
+				'none' !== $key_source
+					? $this->result( true, 'key_present', __( 'An API key is configured. Live validation is not available for this connector.', 'b-ai-provider-connectors' ) )
+					: $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'b-ai-provider-connectors' ) )
+			);
+		}
+
+		if ( 'none' === $key_source ) {
 			return rest_ensure_response( $this->result( false, 'missing_key', __( 'No API key is configured for this connector.', 'b-ai-provider-connectors' ) ) );
 		}
 
-		// A provider that is switched off is not in the registry for this request — register it just for the test.
-		if ( $is_ours ) {
-			BAIOAP_AI_Client::ensure_registered( $id );
-		}
-
-		$is_valid = _wp_connectors_is_ai_api_key_valid( $api_key, $id );
+		// Core passes the stored key to the AI Client registry; ask the registry to verify it.
+		$is_valid = $this->registry_is_configured( $id );
 
 		if ( true === $is_valid ) {
 			return rest_ensure_response( $this->result( true, 'valid', __( 'Connection successful. The API key is valid.', 'b-ai-provider-connectors' ) ) );
@@ -253,31 +251,27 @@ class BAIOAP_REST {
 	}
 
 	/**
-	 * Resolves the API key for a connector, checking env, constant, then option.
+	 * Asks the WordPress AI Client registry whether a provider's credentials work.
 	 *
-	 * @param array $auth Authentication config from wp_get_connector().
-	 * @return string The API key, or '' when missing.
+	 * The registry already holds the provider's authentication (core passes the
+	 * stored connector key to it on init), so no API key is read here.
+	 *
+	 * @param string $id Provider ID.
+	 * @return bool|null True if valid, false if invalid, null if unable to determine.
 	 */
-	private function resolve_api_key( array $auth ) {
-		if ( ! empty( $auth['env_var_name'] ) ) {
-			$env_value = getenv( $auth['env_var_name'] );
-			if ( false !== $env_value && '' !== $env_value ) {
-				return (string) $env_value;
-			}
+	private function registry_is_configured( $id ) {
+		if ( ! class_exists( \WordPress\AiClient\AiClient::class ) ) {
+			return null;
 		}
-		if ( ! empty( $auth['constant_name'] ) && defined( $auth['constant_name'] ) ) {
-			$const_value = constant( $auth['constant_name'] );
-			if ( is_string( $const_value ) && '' !== $const_value ) {
-				return $const_value;
+		try {
+			$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+			if ( ! $registry->hasProvider( $id ) || null === $registry->getProviderRequestAuthentication( $id ) ) {
+				return null;
 			}
+			return $registry->isProviderConfigured( $id );
+		} catch ( \Throwable $e ) {
+			return null;
 		}
-		if ( ! empty( $auth['setting_name'] ) ) {
-			$db_value = get_option( $auth['setting_name'], '' );
-			if ( is_string( $db_value ) && '' !== $db_value ) {
-				return $db_value;
-			}
-		}
-		return '';
 	}
 
 	/* ---------------------------------------------------------------------

@@ -55,7 +55,7 @@ The full source code is developed in the open on GitHub: https://github.com/ah-p
 When you click **Test connection**, open the AI Providers screen (which checks providers that have a key), or when the WordPress AI Client sends a prompt through one of the bundled providers, this plugin sends requests to that provider's API using the API key you stored. Only providers you enabled and configured are contacted. Custom providers contact whatever endpoint you entered. Each provider's terms and privacy policy apply:
 
 * OpenRouter — https://openrouter.ai/terms, https://openrouter.ai/privacy
-* Mistral AI — https://mistral.ai/terms, https://mistral.ai/privacy-policy
+* Mistral AI — https://legal.mistral.ai/terms/get-started/, https://legal.mistral.ai/terms/privacy-policy/
 * Cohere — https://cohere.com/terms-of-use, https://cohere.com/privacy
 * Groq — https://groq.com/terms-of-use, https://groq.com/privacy-policy
 * xAI — https://x.ai/legal/terms-of-service, https://x.ai/legal/privacy-policy

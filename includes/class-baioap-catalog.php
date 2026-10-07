@@ -364,29 +364,6 @@ class BAIOAP_Catalog {
 		if ( function_exists( '_wp_connectors_get_api_key_source' ) ) {
 			return (string) _wp_connectors_get_api_key_source( $names['setting'], $names['env'], $names['constant'] );
 		}
-		return '' !== self::key_value( $id ) ? 'option' : 'none';
-	}
-
-	/**
-	 * Resolves the provider's API key (env var, then constant, then option).
-	 *
-	 * @param string $id Provider ID.
-	 * @return string Key or '' when missing.
-	 */
-	public static function key_value( $id ) {
-		$names = self::key_names( $id );
-
-		$env = getenv( $names['env'] );
-		if ( false !== $env && '' !== $env ) {
-			return (string) $env;
-		}
-		if ( defined( $names['constant'] ) ) {
-			$const = constant( $names['constant'] );
-			if ( is_string( $const ) && '' !== $const ) {
-				return $const;
-			}
-		}
-		$option = get_option( $names['setting'], '' );
-		return is_string( $option ) ? $option : '';
+		return 'none';
 	}
 }
